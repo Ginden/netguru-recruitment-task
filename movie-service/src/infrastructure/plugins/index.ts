@@ -10,6 +10,11 @@ export const plugins: ServerRegisterPluginObject<any>[] = [
   authPlugin,
   {
     plugin: HapiPino,
+    options: {
+      redact: ['req.headers.authorization'],
+      logQueryParams: true,
+      logRequestComplete: false,
+    },
   },
   {
     plugin: HapiInert,

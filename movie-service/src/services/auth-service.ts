@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
+import { notNull } from '../helpers';
 
-export class Auth {
+export class AuthService {
   readonly #domain: string = 'http://auth-service/';
   readonly #fetch: typeof fetch;
 
@@ -20,6 +21,7 @@ export class Auth {
         `API returned ${httpResponse.status} (${httpResponse.statusText})`,
       );
     }
-    return (await httpResponse.json()).token;
+    const response = await httpResponse.json();
+    return notNull(response.token);
   }
 }

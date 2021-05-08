@@ -1,0 +1,7 @@
+version: "3.5"
+services:
+  movie-service:
+    command: 'npm test'
+    environment:
+      RUN_INTEGRATION_TESTS: 'true'
+      NODE_APP_INSTANCE: 'test'

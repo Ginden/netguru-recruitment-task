@@ -24,3 +24,15 @@ docker-compose -f docker-compose.yml -f auth-service/docker-compose.yml -f movie
 ```
 
 After running `docker-compose up`, you can browse documentation at http://localhost:3000/documentation#/
+
+## Running tests
+
+Unit tests can be run directly from `movie-service` directory by running `npm test`
+
+To run full integration tests, use:
+
+```
+docker-compose -f docker-compose.yml -f db/docker-compose.yml -f auth-service/docker-compose.yml -f movie-service/docker-compose.yml -f movie-service/integration-test-docker.yml up --build --abort-on-container-exit
+```
+
+This will remove all data from database, so be careful.

@@ -51,7 +51,7 @@ function filterObject<T extends Record<string, string | undefined>>(
   ) as any;
 }
 
-export class OmdbApi {
+export class OmdbApiClient {
   readonly #domain: string = 'https://www.omdbapi.com/';
   readonly #apiKey: string;
   readonly #fetch: typeof fetch;
@@ -61,6 +61,7 @@ export class OmdbApi {
     customFetch: typeof fetch = fetch,
   ) {
     notNull(apiKey);
+    notNull(customFetch);
     this.#apiKey = apiKey;
     this.#fetch = customFetch;
   }

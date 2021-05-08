@@ -1,14 +1,13 @@
 import { Lifecycle, RouteOptionsValidate, ServerRoute } from '@hapi/hapi';
 import { object, ObjectSchema, string } from 'joi';
-import { authorizationHeadersRequired } from '../../../helpers';
-import { Auth } from '../../../services/auth';
+import { AuthService } from '../../services/auth-service';
 
 export const authHandler: Lifecycle.Method = async (request, h) => {
   const { username, password } = request.payload as {
     username: string;
     password: string;
   };
-  const authService = new Auth();
+  const authService = new AuthService();
   const token = await authService.authenticate(username, password);
   return h.response({
     token,
@@ -23,7 +22,7 @@ const authRequestValidator: RouteOptionsValidate = {
 };
 
 const authResponse: ObjectSchema = object({
-  token: string(),
+  token: string().required(),
 }).label('AuthResponse');
 
 export const authRoute: ServerRoute = {
