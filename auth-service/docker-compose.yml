@@ -1,0 +1,8 @@
+version: "3.5"
+services:
+  auth-service:
+    build:
+      context: auth-service
+      dockerfile: ./Dockerfile
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
