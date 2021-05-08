@@ -7,8 +7,4 @@ RUN npm ci
 
 COPY ./src src
 
-RUN find /app/
-
-# CMD ["find", "/app"]
-
-ENTRYPOINT ["node", "./src/server.js"]
+CMD ["node", "./src/server.js"]

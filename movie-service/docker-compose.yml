@@ -1,0 +1,15 @@
+version: "3.5"
+services:
+  movie-service:
+    build:
+      context: movie-service
+      dockerfile: ./Dockerfile
+    ports:
+    - ${APP_PORT:-3000}:80
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      PGUSER: ${PGUSER:-netguru}
+      PGPASSWORD: ${PGPASSWORD:-netguru}
+      PGPGDATABASE: ${PGPGDATABASE:-netguru}
+      PGHOST: ${PGHOST:-postgres}
+      OMDB_API_KEY: ${OMDB_API_KEY}

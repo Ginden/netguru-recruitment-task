@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { authFactory, AuthError } = require("./auth");
 
-const PORT = parseInt(process.env.PORT) || 80;
+const PORT = 80;
 const { JWT_SECRET } = process.env;
 
 if (!JWT_SECRET) {
