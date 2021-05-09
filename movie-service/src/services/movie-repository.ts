@@ -1,7 +1,7 @@
 import { tooEarly } from '@hapi/boom';
 import { UserCredentials } from '@hapi/hapi';
 import { pick } from 'lodash';
-import { EntityRepository, In, Raw, Repository } from 'typeorm';
+import { EntityRepository, Repository } from 'typeorm';
 import { Movie } from '../db/entities/movie';
 import { Submission } from '../db/entities/submission';
 import { OmdbMovieDetails } from './omdb-api-client';
@@ -39,7 +39,7 @@ export class MovieRepository extends Repository<Movie> {
         genre,
         director,
         imdbId,
-        details: details as object,
+        details: details as any,
       });
     await this.save(m);
     const submission = this.manager.getRepository(Submission).create({
